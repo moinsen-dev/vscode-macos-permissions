@@ -2,7 +2,7 @@
   "name": "macos-permissions",
   "displayName": "macOS Permissions for Development",
   "description": "Request macOS permissions (microphone, camera, speech recognition, etc.) so VS Code can launch apps that need these permissions",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "moinsen",
   "license": "MIT",
   "repository": {
@@ -26,6 +26,7 @@
   "activationEvents": [
     "onStartupFinished"
   ],
+  "icon": "images/icon.png",
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -164,14 +165,12 @@
     "watch": "tsc -watch -p ./",
     "build-native": "cd native && node-gyp rebuild",
     "prebuildify": "prebuildify --napi --strip",
-    "install": "node-gyp-build || echo 'Native build skipped'",
-    "test": "npm run compile && npx mocha out/test/**/*.test.js --ui tdd --timeout 10000",
+    "install": "echo 'Using prebuilt native addon'",
+    "test": "tsc -p tsconfig.test.json && npx mocha out/test/**/*.test.js --ui tdd --timeout 10000",
     "package": "vsce package",
     "lint": "eslint src --ext ts"
   },
-  "dependencies": {
-    "node-gyp-build": "^4.8.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/mocha": "^10.0.0",
     "@types/node": "^20.10.0",

@@ -54,12 +54,12 @@ let addon: NativeAddon | null = null;
 
 export function loadAddon(extensionPath: string): NativeAddon {
     if (addon) { return addon; }
-    try {
-        const gypBuild = require('node-gyp-build');
-        addon = gypBuild(extensionPath) as NativeAddon;
-    } catch {
-        addon = require(path.join(extensionPath, 'native', 'build', 'Release', 'permissions.node')) as NativeAddon;
-    }
+    const prebuildPath = path.join(
+        extensionPath, 'prebuilds',
+        `${process.platform}-${process.arch}`,
+        'macos-permissions.node'
+    );
+    addon = require(prebuildPath) as NativeAddon;
     return addon;
 }
 

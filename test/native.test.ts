@@ -2,7 +2,8 @@ import * as assert from 'assert';
 import * as path from 'path';
 
 suite('Native Addon', () => {
-    const addonPath = path.resolve(__dirname, '../../native/build/Release/permissions.node');
+    const projectRoot = path.resolve(__dirname, '../..');
+    const addonPath = path.join(projectRoot, 'prebuilds', `${process.platform}-${process.arch}`, 'macos-permissions.node');
     let addon: { checkPermission: (t: string) => string; requestPermission: (t: string) => Promise<string> };
 
     suiteSetup(() => {
