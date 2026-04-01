@@ -1,0 +1,188 @@
+{
+  "name": "macos-permissions",
+  "displayName": "macOS Permissions for Development",
+  "description": "Request macOS permissions (microphone, camera, speech recognition, etc.) so VS Code can launch apps that need these permissions",
+  "version": "0.2.0",
+  "publisher": "moinsen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moinsen-dev/vscode-macos-permissions"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "macos",
+    "permissions",
+    "tcc",
+    "flutter",
+    "ios",
+    "development"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "macosPermissions.requestAll",
+        "title": "Request All macOS Permissions",
+        "category": "macOS Permissions"
+      },
+      {
+        "command": "macosPermissions.showStatus",
+        "title": "Show Permission Status",
+        "category": "macOS Permissions"
+      },
+      {
+        "command": "macosPermissions.requestMicrophone",
+        "title": "Request Microphone Permission",
+        "category": "macOS Permissions"
+      },
+      {
+        "command": "macosPermissions.requestCamera",
+        "title": "Request Camera Permission",
+        "category": "macOS Permissions"
+      },
+      {
+        "command": "macosPermissions.requestSpeechRecognition",
+        "title": "Request Speech Recognition Permission",
+        "category": "macOS Permissions"
+      },
+      {
+        "command": "macosPermissions.requestLocation",
+        "title": "Request Location Permission",
+        "category": "macOS Permissions"
+      },
+      {
+        "command": "macosPermissions.requestContacts",
+        "title": "Request Contacts Permission",
+        "category": "macOS Permissions"
+      },
+      {
+        "command": "macosPermissions.requestCalendars",
+        "title": "Request Calendars Permission",
+        "category": "macOS Permissions"
+      },
+      {
+        "command": "macosPermissions.requestReminders",
+        "title": "Request Reminders Permission",
+        "category": "macOS Permissions"
+      },
+      {
+        "command": "macosPermissions.requestPhotos",
+        "title": "Request Photos Permission",
+        "category": "macOS Permissions"
+      },
+      {
+        "command": "macosPermissions.requestBluetooth",
+        "title": "Request Bluetooth Permission",
+        "category": "macOS Permissions"
+      },
+      {
+        "command": "macosPermissions.openSystemPreferences",
+        "title": "Open Privacy & Security Settings",
+        "category": "macOS Permissions"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "macosPermissions.requestAll",
+          "when": "isMac"
+        },
+        {
+          "command": "macosPermissions.showStatus",
+          "when": "isMac"
+        },
+        {
+          "command": "macosPermissions.requestMicrophone",
+          "when": "isMac"
+        },
+        {
+          "command": "macosPermissions.requestCamera",
+          "when": "isMac"
+        },
+        {
+          "command": "macosPermissions.requestSpeechRecognition",
+          "when": "isMac"
+        },
+        {
+          "command": "macosPermissions.requestLocation",
+          "when": "isMac"
+        },
+        {
+          "command": "macosPermissions.requestContacts",
+          "when": "isMac"
+        },
+        {
+          "command": "macosPermissions.requestCalendars",
+          "when": "isMac"
+        },
+        {
+          "command": "macosPermissions.requestReminders",
+          "when": "isMac"
+        },
+        {
+          "command": "macosPermissions.requestPhotos",
+          "when": "isMac"
+        },
+        {
+          "command": "macosPermissions.requestBluetooth",
+          "when": "isMac"
+        },
+        {
+          "command": "macosPermissions.openSystemPreferences",
+          "when": "isMac"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "macOS Permissions",
+      "properties": {
+        "macosPermissions.showStatusBarItem": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show permission status in the status bar"
+        },
+        "macosPermissions.checkOnStartup": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check permission status when VS Code starts"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile && npm run prebuildify",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "build-native": "cd native && node-gyp rebuild",
+    "prebuildify": "prebuildify --napi --strip",
+    "install": "node-gyp-build || echo 'Native build skipped'",
+    "test": "npm run compile && npx mocha out/test/**/*.test.js --ui tdd --timeout 10000",
+    "package": "vsce package",
+    "lint": "eslint src --ext ts"
+  },
+  "dependencies": {
+    "node-gyp-build": "^4.8.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "mocha": "^10.2.0",
+    "node-addon-api": "^7.0.0",
+    "node-gyp": "^10.0.0",
+    "prebuildify": "^6.0.0",
+    "typescript": "^5.3.0"
+  }
+}
